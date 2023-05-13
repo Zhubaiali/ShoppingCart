@@ -1,7 +1,8 @@
 package com.ywp.shoppingcartbackend.mapper;
 
-import com.ywp.shoppingcartbackend.domain.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ywp.shoppingcartbackend.domain.User;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @author asus
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @createDate 2023-05-13 20:39:44
  * @Entity com.ywp.shoppingcartbackend.domain.User
  */
+@Mapper
 public interface UserMapper extends BaseMapper<User> {
 
 }

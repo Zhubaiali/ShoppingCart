@@ -1,15 +1,12 @@
 package com.ywp.shoppingcartbackend.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ywp.shoppingcartbackend.domain.Product;
-import com.ywp.shoppingcartbackend.service.ProductService;
 import com.ywp.shoppingcartbackend.mapper.ProductMapper;
-
-import java.util.List;
-
+import com.ywp.shoppingcartbackend.service.ProductService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author asus
@@ -20,12 +17,17 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> implements ProductService {
 
     @Override
-    public List<Product> getAllProducts() {
-        // 获取所有的商品
+    public IPage<Product> getAllProducts(int page, int size) {
+        // 创建 Page 对象，传入当前页数和每页数量
+        Page<Product> productPage = new Page<>(page, size);
+        // 使用 MyBatis Plus 的 selectPage 方法进行分页查询
+        return this.page(productPage);
     }
+
 
     @Override
     public Product getProductById(Integer productId) {
-        // 获取指定id的商品
+        // 使用 MyBatis Plus 的 getById 方法来获取指定id的商品
+        return this.getById(productId);
     }
 }

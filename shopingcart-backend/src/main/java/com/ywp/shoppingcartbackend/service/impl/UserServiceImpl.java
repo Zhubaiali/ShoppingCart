@@ -2,8 +2,8 @@ package com.ywp.shoppingcartbackend.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ywp.shoppingcartbackend.domain.User;
-import com.ywp.shoppingcartbackend.service.UserService;
 import com.ywp.shoppingcartbackend.mapper.UserMapper;
+import com.ywp.shoppingcartbackend.service.UserService;
 import org.springframework.stereotype.Service;
 
 /**

@@ -1,11 +1,9 @@
 package com.ywp.shoppingcartbackend.mapper;
 
-import com.ywp.shoppingcartbackend.domain.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import com.ywp.shoppingcartbackend.domain.Product;
+import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
 
 /**
  * @author asus
@@ -13,6 +11,7 @@ import java.util.List;
  * @createDate 2023-05-13 11:10:48
  * @Entity com.ywp.shoppingcartbackend.domain.Product
  */
+@Mapper
 public interface ProductMapper extends BaseMapper<Product> {
 
 }

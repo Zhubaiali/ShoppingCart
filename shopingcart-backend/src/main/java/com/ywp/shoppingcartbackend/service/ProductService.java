@@ -1,9 +1,8 @@
 package com.ywp.shoppingcartbackend.service;
 
-import com.ywp.shoppingcartbackend.domain.Product;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-
-import java.util.List;
+import com.ywp.shoppingcartbackend.domain.Product;
 
 /**
  * @author asus
@@ -12,7 +11,7 @@ import java.util.List;
  */
 public interface ProductService extends IService<Product> {
 
-    List<Product> getAllProducts();
+    IPage<Product> getAllProducts(int page, int size);
 
     Product getProductById(Integer productId);
 }

@@ -1,11 +1,8 @@
 package com.ywp.shoppingcartbackend.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ywp.shoppingcartbackend.domain.CartItem;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ywp.shoppingcartbackend.domain.Product;
-
-import java.util.List;
+import com.ywp.shoppingcartbackend.domain.CartItem;
 
 /**
  * @author asus

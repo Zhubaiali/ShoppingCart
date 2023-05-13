@@ -6,9 +6,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ywp.shoppingcartbackend.domain.CartItem;
 import com.ywp.shoppingcartbackend.domain.Product;
+import com.ywp.shoppingcartbackend.mapper.CartItemMapper;
 import com.ywp.shoppingcartbackend.mapper.ProductMapper;
 import com.ywp.shoppingcartbackend.service.CartItemService;
-import com.ywp.shoppingcartbackend.mapper.CartItemMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +25,7 @@ public class CartItemServiceImpl extends ServiceImpl<CartItemMapper, CartItem> i
     private ProductMapper productMapper;
 
     @Autowired
-    privave CartItemMapper cartItemMapper;
+    private CartItemMapper cartItemMapper;
 
     private CartItem getCartItem(Integer userId, Integer productId) {
         QueryWrapper<CartItem> queryWrapper = new QueryWrapper<>();
@@ -109,11 +109,11 @@ public class CartItemServiceImpl extends ServiceImpl<CartItemMapper, CartItem> i
         int newQuantity = cartItem.getQuantity() - quantity;
         if (newQuantity <= 0) {
             // 如果商品的数量减少为0或者负数，那么从购物车中移除该商品
-            cartItemService.removeById(cartItem.getId());
+            this.removeById(cartItem.getId());
             return null;
         } else {
             cartItem.setQuantity(newQuantity);
-            cartItemService.updateById(cartItem);
+            this.updateById(cartItem);
             return cartItem;
         }
     }

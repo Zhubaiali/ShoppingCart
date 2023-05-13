@@ -1,7 +1,7 @@
 package com.ywp.shoppingcartbackend.service;
 
-import com.ywp.shoppingcartbackend.domain.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ywp.shoppingcartbackend.domain.User;
 
 /**
  * @author asus
