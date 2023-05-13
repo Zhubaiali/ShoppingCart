@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+</head>
+<body>
+<h1>购物车</h1>
+<div id="cart"></div>
+
+<h2>添加商品到购物车</h2>
+<form id="add-to-cart-form">
+    <label>
+        商品ID：
+        <input type="number" id="add-product-id">
+    </label>
+    <label>
+        数量：
+        <input type="number" id="add-quantity">
+    </label>
+    <button type="submit">添加到购物车</button>
+</form>
+
+<h2>从购物车中移除商品</h2>
+<form id="remove-from-cart-form">
+    <label>
+        商品ID：
+        <input type="number" id="remove-product-id">
+    </label>
+    <button type="submit">从购物车中移除</button>
+</form>
+
+<script src="main.js"></script>
+</body>
+</html>
