@@ -1,8 +1,6 @@
 package com.ywp.shoppingcartbackend.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ywp.shoppingcartbackend.domain.CartItem;
 import com.ywp.shoppingcartbackend.service.CartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:63342")
 @RestController
 @RequestMapping("/user/{userId}/cart")
 public class CartController {

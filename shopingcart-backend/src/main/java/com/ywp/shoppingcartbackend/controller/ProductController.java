@@ -1,16 +1,12 @@
 package com.ywp.shoppingcartbackend.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ywp.shoppingcartbackend.domain.Product;
 import com.ywp.shoppingcartbackend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@CrossOrigin(origins = "http://localhost:63342")
 @RestController
 @RequestMapping("/product")
 public class ProductController {

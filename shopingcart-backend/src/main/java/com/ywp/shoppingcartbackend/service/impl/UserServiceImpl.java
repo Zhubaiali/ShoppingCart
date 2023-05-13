@@ -1,5 +1,6 @@
 package com.ywp.shoppingcartbackend.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ywp.shoppingcartbackend.domain.User;
 import com.ywp.shoppingcartbackend.mapper.UserMapper;
@@ -18,22 +19,47 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     @Transactional
     public User register(User user) {
-        // 检查用户名是否已存在
-        // 如果用户名存在，抛出异常
-        // 否则，将用户信息保存到数据库
-    }
+        if (user == null || user.getUsername() == null || user.getPassword() == null) {
+            throw new IllegalArgumentException("User information is incomplete.");
+        }
 
+        // 检查用户名是否已存在
+        if (getByUsername(user.getUsername()) != null) {
+            throw new IllegalArgumentException("Username already exists: " + user.getUsername());
+        }
+
+        // 否则，将用户信息保存到数据库
+        this.save(user);
+        return user;
+    }
+    private User getByUsername(String username) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        return this.getOne(queryWrapper);
+    }
     @Override
     @Transactional
     public User login(String username, String password) {
+        User user = getByUsername(username);
         // 检查用户名和密码是否正确
-        // 如果用户名或密码错误，抛出异常
+        if (user == null || !user.getPassword().equals(password)) {
+            throw new IllegalArgumentException("Username or password is incorrect.");
+        }
+
         // 否则，返回用户信息
+        return user;
     }
 
     @Override
     @Transactional
     public User updateLocation(Integer userId, String location) {
         // 更新用户的地址信息
+        User user = this.getById(userId);
+        if (user == null) {
+            throw new IllegalArgumentException("Invalid user id: " + userId);
+        }
+        user.setLocation(location);
+        this.updateById(user);
+        return user;
     }
 }
