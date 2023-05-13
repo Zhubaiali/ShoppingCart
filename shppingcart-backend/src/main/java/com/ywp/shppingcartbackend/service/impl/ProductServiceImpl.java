@@ -1,9 +1,13 @@
 package com.ywp.shppingcartbackend.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ywp.shppingcartbackend.domain.Product;
 import com.ywp.shppingcartbackend.service.ProductService;
 import com.ywp.shppingcartbackend.mapper.ProductMapper;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,7 +52,13 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
         return product;
     }
+
+    @Override
+    public List<Product> getProductsInCart() {
+        // 使用 MyBatis Plus 的 QueryWrapper 来创建查询条件
+        QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("in_cart", 1);
+        // 使用 mapper 的 selectList 方法来执行查询
+        return this.list(queryWrapper);
+    }
 }
-
-
-

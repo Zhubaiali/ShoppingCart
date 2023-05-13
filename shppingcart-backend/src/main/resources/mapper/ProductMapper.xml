@@ -9,7 +9,7 @@
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="description" column="description" jdbcType="VARCHAR"/>
             <result property="price" column="price" jdbcType="DECIMAL"/>
-            <result property="in_cart" column="in_cart" jdbcType="TINYINT"/>
+            <result property="inCart" column="in_cart" jdbcType="TINYINT"/>
             <result property="quantity" column="quantity" jdbcType="INTEGER"/>
             <result property="created_at" column="created_at" jdbcType="TIMESTAMP"/>
             <result property="updated_at" column="updated_at" jdbcType="TIMESTAMP"/>

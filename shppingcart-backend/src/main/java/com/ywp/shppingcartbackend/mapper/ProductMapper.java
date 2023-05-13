@@ -2,6 +2,10 @@ package com.ywp.shppingcartbackend.mapper;
 
 import com.ywp.shppingcartbackend.domain.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
 * @author asus
@@ -10,13 +14,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity generator.domain.Product
 */
 public interface ProductMapper extends BaseMapper<Product> {
-
-    @Select("SELECT * FROM product WHERE in_cart = 1")
-    List<Product> selectProductsInCart();
-
-    @Select("SELECT * FROM product WHERE id = #{id}")
-    Product selectProductById(@Param("id") Integer id);
-
     
 }
 

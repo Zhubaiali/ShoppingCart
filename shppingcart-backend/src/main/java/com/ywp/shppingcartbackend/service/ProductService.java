@@ -3,6 +3,8 @@ package com.ywp.shppingcartbackend.service;
 import com.ywp.shppingcartbackend.domain.Product;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * @author asus
 * @description 针对表【product】的数据库操作Service
@@ -25,6 +27,12 @@ public interface ProductService extends IService<Product> {
      * @return 更新后的Product
      */
     Product removeFromCart(Integer productId);
-    
+
+    /**
+     * 获取购物车中的所有商品
+     *
+     * @return 购物车中的商品列表
+     */
+    List<Product> getProductsInCart();
 
 }
