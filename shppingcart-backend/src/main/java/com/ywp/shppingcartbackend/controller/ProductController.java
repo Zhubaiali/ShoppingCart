@@ -9,6 +9,7 @@ import com.ywp.shppingcartbackend.service.ProductService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:63342")
 @RestController
 @RequestMapping("/product")
 public class ProductController {
