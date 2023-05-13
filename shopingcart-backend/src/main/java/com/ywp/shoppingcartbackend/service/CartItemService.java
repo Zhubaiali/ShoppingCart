@@ -35,7 +35,7 @@ public interface CartItemService extends IService<CartItem> {
      * @param userId 用户ID
      * @return 该用户购物车中的商品列表
      */
-    IPage<CartItem> getCartItems(Integer userId, int pageNumber, int pageSize)
+    IPage<CartItem> getCartItems(Integer userId, int pageNumber, int pageSize);
 
     CartItem decreaseQuantity(Integer userId, Integer productId, Integer quantity);
 

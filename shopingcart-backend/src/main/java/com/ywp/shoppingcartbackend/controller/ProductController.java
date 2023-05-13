@@ -1,5 +1,7 @@
 package com.ywp.shoppingcartbackend.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ywp.shoppingcartbackend.domain.Product;
 import com.ywp.shoppingcartbackend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +18,16 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping("/addToCart/{productId}")
-    public ResponseEntity<Product> addToCart(@PathVariable Integer productId, @RequestParam Integer quantity) {
-        Product product = productService.addToCart(productId, quantity);
-        return ResponseEntity.ok(product);
-    }
-
-    @PostMapping("/removeFromCart/{productId}")
-    public ResponseEntity<Product> removeFromCart(@PathVariable Integer productId) {
-        Product product = productService.removeFromCart(productId);
-        return ResponseEntity.ok(product);
-    }
-
-    @GetMapping("/cart")
-    public ResponseEntity<List<Product>> getProductsInCart() {
-        List<Product> products = productService.getProductsInCart();
+    @GetMapping("")
+    public ResponseEntity<IPage<Product>> getAllProducts(@RequestParam(required = false, defaultValue = "0") Integer pageNum,
+                                                         @RequestParam(required = false, defaultValue = "10") Integer pageSize) {
+        IPage<Product> products = productService.getAllProducts(pageNum, pageSize);
         return ResponseEntity.ok(products);
     }
 
+    @GetMapping("/{productId}")
+    public ResponseEntity<Product> getProductById(@PathVariable Integer productId) {
+        Product product = productService.getProductById(productId);
+        return ResponseEntity.ok(product);
+    }
 }
