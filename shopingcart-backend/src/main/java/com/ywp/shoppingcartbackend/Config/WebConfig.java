@@ -5,7 +5,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * 避免每个controller前面写个@CrossOrigin(origins = "http://localhost:63342")
+ * 避免每个controller前面写个@CrossOrigin(origins = "http://localhost:3000")
  */
 
 @Configuration
@@ -20,4 +20,3 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowCredentials(true);
     }
 }
-

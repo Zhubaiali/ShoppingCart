@@ -1,49 +1,37 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import CartPage from './pages/CartPage';
+import OrderPage from './pages/OrderPage';
+import ProductPage from './pages/ProductPage';
+// 引入其他页面组件...
 
-import Cart from "./Cart";
-import Product from "./Product";
-import Order from "./Order";
-import User from "./User";
+const App = () => {
+    const [user, setUser] = useState(null);
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/cart">Cart</Link>
-            </li>
-            <li>
-              <Link to="/product">Product</Link>
-            </li>
-            <li>
-              <Link to="/order">Order</Link>
-            </li>
-            <li>
-              <Link to="/user">User</Link>
-            </li>
-          </ul>
-        </nav>
+    const handleLogin = (userData) => {
+        setUser(userData);
+    };
 
-        <Switch>
-          <Route path="/cart">
-            <Cart />
-          </Route>
-          <Route path="/product">
-            <Product />
-          </Route>
-          <Route path="/order">
-            <Order />
-          </Route>
-          <Route path="/user">
-            <User />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
+    return (
+        <Router>
+            <Switch>
+                <Route path="/login">
+                    {user ? <Redirect to="/cart" /> : <LoginPage onLogin={handleLogin} />}
+                </Route>
+                <Route path="/cart">
+                    {user ? <CartPage userId={user.id} /> : <Redirect to="/login" />}
+                </Route>
+                <Route path="/orders">
+                    {user ? <OrderPage userId={user.id} /> : <Redirect to="/login" />}
+                </Route>
+                <Route path="/products">
+                    <ProductPage />
+                </Route>
+                {/* 添加其他路由... */}
+            </Switch>
+        </Router>
+    );
+};
 
 export default App;
