@@ -1,38 +1,36 @@
 import React, { useState, useEffect } from "react";
-import axios from "../axios";
+import { getProducts } from '../utils/api';
 
-const OrderPage = ({ userId }) => {
+const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
+  const [page, setPage] = useState(1);
+  const size = 10;
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      const response = await axios.get(`/user/${userId}/order`);
-      setOrders(response.data);
-    };
-
-    fetchOrders();
-  }, [userId]);
-
-  const deleteOrder = async (orderId) => {
-    await axios.delete(`/user/${userId}/order/${orderId}`);
-    setOrders((prevOrders) =>
-      prevOrders.filter((order) => order.id !== orderId)
-    );
-  };
+    getOrders(page, size)
+      .then((response) => {
+        setOrders(response.data);
+      })
+      .catch((error) => {
+        console.error('Failed to fetch orders', error);
+      });
+  }, [page]);
 
   return (
     <div>
-      <h1>订单</h1>
       {orders.map((order) => (
         <div key={order.id}>
-          <h2>订单 ID: {order.id}</h2>
-          <p>商品 ID: {order.productId}</p>
-          <p>数量: {order.quantity}</p>
-          <button onClick={() => deleteOrder(order.id)}>删除订单</button>
+          <h2>Order #{order.id}</h2>
+          {order.items.map((item) => (
+            <div key={item.id}>
+              <p>{item.product.name} x {item.quantity}</p>
+            </div>
+          ))}
         </div>
       ))}
+      <button onClick={() => setPage(page + 1)}>Next Page</button>
     </div>
   );
 };
 
-export default OrderPage;
+export default OrdersPage;

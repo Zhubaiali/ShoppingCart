@@ -1,66 +1,33 @@
 import React, { useState, useEffect } from "react";
 import axios from "../axios";
 
-const CartPage = ({ userId }) => {
-  const [cartItems, setCartItems] = useState([]);
+const CartPage = () => {
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    const fetchCartItems = async () => {
-      const response = await axios.get(`/user/${userId}/cart`);
-      setCartItems(response.data);
-    };
+    getCart()
+      .then((response) => {
+        setCart(response.data);
+      })
+      .catch((error) => {
+        console.error('Failed to fetch cart', error);
+      });
+  }, []);
 
-    fetchCartItems();
-  }, [userId]);
+  // 在此处添加 addToCart 和 deleteFromCart 的函数实现
+  
 
-  const addToCart = async (productId, quantity) => {
-    const response = await axios.post(`/user/${userId}/cart/add/${productId}`, {
-      quantity,
-    });
-    setCartItems((prevItems) => [...prevItems, response.data]);
-  };
-
-  const decreaseQuantity = async (productId, quantity) => {
-    const response = await axios.post(
-      `/user/${userId}/cart/decrease/${productId}`,
-      { quantity }
-    );
-    if (response.status === 204) {
-      setCartItems((prevItems) =>
-        prevItems.filter((item) => item.productId !== productId)
-      );
-    } else {
-      setCartItems((prevItems) =>
-        prevItems.map((item) =>
-          item.productId === productId ? response.data : item
-        )
-      );
-    }
-  };
-
-  const removeFromCart = async (productId) => {
-    await axios.post(`/user/${userId}/cart/remove/${productId}`);
-    setCartItems((prevItems) =>
-      prevItems.filter((item) => item.productId !== productId)
-    );
-  };
 
   return (
     <div>
-      <h1>购物车</h1>
-      {cartItems.map((item) => (
+      {cart.map((item) => (
         <div key={item.id}>
-          <h2>{item.productName}</h2>
-          <p>数量: {item.quantity}</p>
-          <button onClick={() => addToCart(item.productId, 1)}>增加数量</button>
-          <button onClick={() => decreaseQuantity(item.productId, 1)}>
-            减少数量
-          </button>
-          <button onClick={() => removeFromCart(item.productId)}>
-            从购物车移除
-          </button>
+          <h2>{item.product.name}</h2>
+          <p>{item.product.description}</p>
+          <button onClick={() => deleteFromCart(item.product.id)}>Remove</button>
         </div>
       ))}
+      {/* 添加到购物车的输入和按钮在此处实现 */}
     </div>
   );
 };

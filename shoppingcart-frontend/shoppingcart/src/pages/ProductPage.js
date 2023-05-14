@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from "react";
-import axios from "../axios";
+import { getProducts } from '../utils/api';
 
-const ProductPage = () => {
+const ProductsPage = () => {
   const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1);  // 初始化分页为第1页
+  const size = 10;  // 每页显示10个产品
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await axios.get(`/product`);
-      setProducts(response.data.records);
-    };
-
-    fetchProducts();
-  }, []);
+    getProducts(page, size)
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.error('Failed to fetch products', error);
+      });
+  }, [page]);
 
   return (
     <div>
-      <h1>产品</h1>
       {products.map((product) => (
         <div key={product.id}>
-          <h2>产品 ID: {product.id}</h2>
-          <p>产品名称: {product.name}</p>
-          <p>产品描述: {product.description}</p>
+          <h2>{product.name}</h2>
+          <p>{product.description}</p>
         </div>
       ))}
+      <button onClick={() => setPage(page + 1)}>Next Page</button>
     </div>
   );
 };
-
-export default ProductPage;
