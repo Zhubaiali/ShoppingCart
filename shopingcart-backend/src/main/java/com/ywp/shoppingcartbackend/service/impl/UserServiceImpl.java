@@ -8,6 +8,8 @@ import com.ywp.shoppingcartbackend.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 /**
  * @author asus
  * @description 针对表【user】的数据库操作Service实现
@@ -28,7 +30,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new IllegalArgumentException("Username already exists: " + user.getUsername());
         }
 
-        // 否则，将用户信息保存到数据库
+        user.setCreatedAt(new Date());
+        user.setUpdatedAt(new Date());
         this.save(user);
         return user;
     }
