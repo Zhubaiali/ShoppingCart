@@ -12,6 +12,7 @@ public class ShoppingcartBackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ShoppingcartBackendApplication.class, args);
+        System.out.println("----------------------start success-----------------------");
     }
 
 }
