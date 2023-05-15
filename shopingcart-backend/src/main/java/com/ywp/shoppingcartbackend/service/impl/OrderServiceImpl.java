@@ -7,6 +7,8 @@ import com.ywp.shoppingcartbackend.domain.Product;
 import com.ywp.shoppingcartbackend.mapper.OrderMapper;
 import com.ywp.shoppingcartbackend.service.OrderService;
 import com.ywp.shoppingcartbackend.service.ProductService;
+
+import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

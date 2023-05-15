@@ -5,10 +5,13 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
 /**
  * 
  * @TableName cart_item
  */
+@TableName("cart_item")
 @Data
 public class CartItem implements Serializable {
     /**

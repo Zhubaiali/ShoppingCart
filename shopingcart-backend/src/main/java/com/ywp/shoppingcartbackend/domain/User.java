@@ -5,10 +5,13 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
 /**
  * 
  * @TableName user
  */
+@TableName("user")
 @Data
 public class User implements Serializable {
     /**

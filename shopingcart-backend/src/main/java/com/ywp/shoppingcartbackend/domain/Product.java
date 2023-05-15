@@ -6,10 +6,13 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
 /**
  * 
  * @TableName product
  */
+@TableName("product")
 @Data
 public class Product implements Serializable {
     /**

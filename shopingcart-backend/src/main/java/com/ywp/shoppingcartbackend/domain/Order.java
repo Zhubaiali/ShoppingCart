@@ -1,5 +1,6 @@
 package com.ywp.shoppingcartbackend.domain;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.util.Date;
  * 
  * @TableName order
  */
+@TableName("`order`")
 @Data
 public class Order implements Serializable {
     /**
