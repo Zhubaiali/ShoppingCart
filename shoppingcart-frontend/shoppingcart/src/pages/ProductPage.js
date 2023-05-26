@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getProducts } from '../utils/api';
+import LoginPage from "./LoginPage";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -28,3 +29,5 @@ const ProductsPage = () => {
     </div>
   );
 };
+
+export default ProductsPage
