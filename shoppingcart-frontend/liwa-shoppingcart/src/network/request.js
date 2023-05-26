@@ -4,7 +4,7 @@ export function request(config) {
   //1.创建axios实例
   const instance = axios.create({
     /* 接口地址在这里更改 */
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://localhost:9998',
     timeout: 5000
   })
 
