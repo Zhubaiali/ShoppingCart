@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user/{userId}/order")
+@RequestMapping("/order/user/{userId}")
 public class OrderController {
 
     @Autowired

@@ -14,7 +14,7 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .addServersItem(new Server().url("http://localhost:9998"))
+                .addServersItem(new Server().url("http://localhost:8088"))
                 .info(new Info().title("丽娃购物车商城系统")
                         .description("丽娃购物车商城文档")
                         .contact(new Contact().name("liwa").email("111@qq.com").url("https://github.com/zhubaiali"))
