@@ -6,15 +6,15 @@ const OrdersPage = () => {
   const [page, setPage] = useState(1);
   const size = 10;
 
-  useEffect(() => {
-    getOrders(page, size)
-      .then((response) => {
-        setOrders(response.data);
-      })
-      .catch((error) => {
-        console.error('Failed to fetch orders', error);
-      });
-  }, [page]);
+  // useEffect(() => {
+  //   getOrders(page, size)
+  //     .then((response) => {
+  //       setOrders(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Failed to fetch orders', error);
+  //     });
+  // }, [page]);
 
   return (
     <div>
