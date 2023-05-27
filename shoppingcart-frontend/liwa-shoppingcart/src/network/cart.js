@@ -2,7 +2,7 @@ import {request} from './request'
 
 export function getCartItems() {
   return request({
-    url: '/user/1/cart',
+    url: '/cart/user/1',
     params: {
       userId: 1,
       pageNum: 1,
