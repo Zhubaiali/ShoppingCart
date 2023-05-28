@@ -9,6 +9,7 @@ const User = () => import('views/user/User')
 
 
 
+
 //通过Vue.use安装vue-router插件
 Vue.use(VueRouter)
 
@@ -33,14 +34,14 @@ const routes = [
     path: '/user',
     component: User
   },
-  
+
 ]
 
 //创建VueRouter对象
 const router = new VueRouter({
   routes,
   mode: 'history'
-}) 
+})
 
 //导出
 export default router

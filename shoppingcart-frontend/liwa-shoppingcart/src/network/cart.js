@@ -1,13 +1,9 @@
 import {request} from './request'
+import store from '../store/index'
 
 export function getCartItems() {
   return request({
-    url: '/cart/user/1',
-    params: {
-      userId: 1,
-      pageNum: 1,
-      pageSize: 9,
-    }
+    url: '/cart/user/' + store.state.user_id,
   })
 }
 

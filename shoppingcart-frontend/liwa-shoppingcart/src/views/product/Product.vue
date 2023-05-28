@@ -3,7 +3,7 @@
     <category-nav-bar class="navbar">
       <div slot="center">丽娃商品</div>
     </category-nav-bar>
-  
+
     <div class="main">
 
       <div class="empty+card" v-for="item in records">
@@ -23,23 +23,20 @@
       </div>
 
     </div>
-  
+
   </div>
 </template>
 
 <script>
-import { getCategory, getSubCategory } from "network/category.js";
-import Scroll from "components/common/scroll/Scroll";
+
 import CategoryNavBar from "components/common/navbar/NavBar";
-import CategoryMenu from "./childcomps/CategoryMenu";
-import CategoryMenuItem from "./childcomps/CategoryMenuItem";
+import {getAllProducts} from "@/network/product";
+
 export default {
   name: "Product",
   components: {
     CategoryNavBar,
-    CategoryMenu,
-    CategoryMenuItem,
-    Scroll,
+
   },
   data() {
     return {
@@ -70,30 +67,26 @@ export default {
   },
   created() {
     this.getData();
-    
   },
 
 
   methods: {
     getData() {
-      getCategory().then((res) => {
-        this.categories = res.data.category.list;
-        this.getSubData(0); 
-       
-        
-      });  
+      getAllProducts().then((res) => {
+        this.records = res.records
+      });
     },
     getSubData(index) {
       this.currentIndex = index
       const maitKey = this.categories[index].maitKey;
         getSubCategory(maitKey).then((res) => {
-          this.categoryData = res.data.list;   
+          this.categoryData = res.data.list;
 
         });
     },
     menuItemClick(index) {
       this.getSubData(index);
-       
+
     },
 
   },
@@ -107,10 +100,6 @@ export default {
   letter-spacing: 2px;
 }
 
-.scroll {
-  height: calc(100vh - 44px - 49px);
-  overflow: hidden;
-}
 
 .card {
   width: 350px;

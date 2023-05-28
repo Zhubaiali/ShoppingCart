@@ -4,8 +4,12 @@ export function request(config) {
   //1.创建axios实例
   const instance = axios.create({
     /* 接口地址在这里更改 */
-    baseURL: 'http://localhost:8088',
-    timeout: 5000
+
+    baseURL: 'http://4fc46j.natappfree.cc',
+    timeout: 5000,
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
 
   //2.axios拦截器
