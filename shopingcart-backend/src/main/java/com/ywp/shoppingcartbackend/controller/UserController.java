@@ -28,9 +28,9 @@ public class UserController {
         User loggedInUser = userService.login(username, password);
         return ResponseEntity.ok(loggedInUser);
     }
-    @PatchMapping("/location/{userId}/")
-    public ResponseEntity<User> updateLocation(@PathVariable Integer userId, @RequestBody Map<String, String> locationInfo) {
-        String location = locationInfo.get("location");
+
+    @PatchMapping("/{userId}/location")
+    public ResponseEntity<User> updateLocation(@PathVariable Integer userId, @RequestParam String location) {
         User updatedUser = userService.updateLocation(userId, location);
         return ResponseEntity.ok(updatedUser);
     }
