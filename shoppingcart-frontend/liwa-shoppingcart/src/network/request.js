@@ -5,7 +5,7 @@ export function request(config) {
   const instance = axios.create({
     /* 接口地址在这里更改 */
 
-    baseURL: 'http://4fc46j.natappfree.cc',
+    baseURL: 'http://192.168.0.82:8088',
     timeout: 5000,
     headers: {
       'Content-Type': 'application/json'

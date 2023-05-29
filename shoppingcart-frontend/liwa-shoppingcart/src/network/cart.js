@@ -7,5 +7,16 @@ export function getCartItems() {
   })
 }
 
+export function addToCart(productId,params) {
+  return request({
+    url: '/cart/user/' + store.state.user_id + '/add/' + productId,
+    method: 'post',
+    data: params,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  })
+}
+
 
 

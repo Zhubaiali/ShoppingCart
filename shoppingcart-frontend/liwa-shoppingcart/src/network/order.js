@@ -7,5 +7,15 @@ export function getOrdersByUserId() {
   })
 }
 
+export function createOrder(params) {
+  return request({
+    url: '/order/user/' + store.state.user_id + '/create',
+    method: 'post',
+    data: params,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  })
+}
 
 
