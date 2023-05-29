@@ -3,18 +3,16 @@
     <category-nav-bar class="navbar">
       <div slot="center">订单</div>
     </category-nav-bar>
-  
+
     <div class="main">
 
-      <div class="empty+card" v-for="item in records">
+      <div class="empty+card" v-for="item in order_list">
         <div class="empty">
           </div>
         <div class="card">
         <div class="content">
-            <div>id:{{ item.id }}</div>
-            <div>名称:{{ item.name }}</div>
-            <div>描述:{{ item.description }}</div>
-            <div>价格:{{ item.price }}</div>
+            <div>订单id:{{ item.id }}</div>
+            <div>商品id:{{ item.productId }}</div>
             <div>数量:{{ item.quantity }}</div>
             <div>创建时间:{{ item.createdAt }}</div>
             <div>更新时间:{{ item.updatedAt }}</div>
@@ -23,13 +21,13 @@
       </div>
 
     </div>
-  
+
   </div>
 </template>
 
 <script>
 import CategoryNavBar from "components/common/navbar/NavBar";
-
+import {getOrdersByUserId} from "@/network/order";
 export default {
   name: "Order",
   components: {
@@ -40,36 +38,31 @@ export default {
       categories: [],
       categoryData: [],
       currentIndex: -1,
-      records: [
-      {
-        "id": 1,
-        "name": "Apple",
-        "description": "Apple",
-        "price": 99,
-        "quantity": 99,
-        "createdAt": "2023-05-20",
-        "updatedAt": "2023-05-20"
-      },
-      {
-        "id": 2,
-        "name": "Apple",
-        "description": "Apple",
-        "price": 99,
-        "quantity": 99,
-        "createdAt": "2023-05-20",
-        "updatedAt": "2023-05-20"
-      },
+      order_list: [
+        {
+          "id": 0,
+          "userId": 0,
+          "productId": 0,
+          "quantity": 0,
+          "isDeleted": 0,
+          "createdAt": "",
+          "updatedAt": ""
+        },
 	    ]
     };
   },
   created() {
     this.getData();
-    
+
   },
 
 
   methods: {
-
+    getData() {
+      getOrdersByUserId().then((res) => {
+        this.order_list = res
+      });
+    },
   },
 };
 </script>

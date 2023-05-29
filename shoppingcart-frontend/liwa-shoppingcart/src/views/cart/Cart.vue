@@ -3,7 +3,7 @@
     <category-nav-bar class="navbar">
       <div slot="center">购物车</div>
     </category-nav-bar>
-  
+
     <div class="main">
 
       <div class="empty+card" v-for="item in cart_list">
@@ -21,7 +21,7 @@
       </div>
 
     </div>
-  
+
   </div>
 </template>
 
@@ -59,16 +59,15 @@ export default {
   },
   created() {
     this.getData();
-    
+
   },
 
 
   methods: {
     getData() {
       getCartItems().then((res) => {
-        console.log(res)
-        this.cart_list = res       
-      });  
+        this.cart_list = res
+      });
     },
   },
 };

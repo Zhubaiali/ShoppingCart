@@ -1,15 +1,15 @@
 import {request} from './request'
 import store from '../store/index'
 
-export function getCartItems() {
+export function getOrdersByUserId() {
   return request({
-    url: '/cart/user/' + store.state.user_id,
+    url: '/order/user/' + store.state.user_id,
   })
 }
 
-export function addToCart(productId,params) {
+export function createOrder(params) {
   return request({
-    url: '/cart/user/' + store.state.user_id + '/add/' + productId,
+    url: '/order/user/' + store.state.user_id + '/create',
     method: 'post',
     data: params,
     headers: {
@@ -17,6 +17,5 @@ export function addToCart(productId,params) {
     }
   })
 }
-
 
 
