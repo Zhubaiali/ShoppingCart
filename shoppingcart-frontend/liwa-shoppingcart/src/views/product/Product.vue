@@ -111,9 +111,6 @@ export default {
         this.records = res.records
       });
     },
-    getItem(productId) {
-
-    },
     confirm() {
       if(this.mode === "加入购物车"){
         let params = new URLSearchParams();

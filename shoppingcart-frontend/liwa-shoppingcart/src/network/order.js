@@ -18,4 +18,14 @@ export function createOrder(params) {
   })
 }
 
+export function deleteOrder(orderId) {
+  return request({
+    url: '/order/user/' + store.state.user_id + '/' + orderId,
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  })
+}
+
 

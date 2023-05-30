@@ -11,6 +11,7 @@
           </div>
         <div class="card">
         <div class="content">
+            <button style="float:right;" @click="deleteOrder(item.id)">删除</button>
             <div>订单id:{{ item.id }}</div>
             <div>商品id:{{ item.productId }}</div>
             <div>数量:{{ item.quantity }}</div>
@@ -28,6 +29,7 @@
 <script>
 import CategoryNavBar from "components/common/navbar/NavBar";
 import {getOrdersByUserId} from "@/network/order";
+import {deleteOrder} from "@/network/order";
 export default {
   name: "Order",
   components: {
@@ -63,6 +65,13 @@ export default {
         this.order_list = res
       });
     },
+    deleteOrder(orderId) {
+      deleteOrder(orderId).then((res) => {
+        console.log(res)
+        this.$router.go(0)
+      });
+
+    }
   },
 };
 </script>
