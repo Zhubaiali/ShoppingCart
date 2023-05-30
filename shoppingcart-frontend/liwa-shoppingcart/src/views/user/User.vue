@@ -15,7 +15,7 @@
 
     </div>
 
-    <div class="row-border" @click="">
+    <div class="row-border" @click="showAddressFix = true;fixed_address = userData.location;">
       <h4>修改地址</h4>
     </div>
     <div class="row-border" @click="showModal = true;mode = '登录';">
@@ -49,13 +49,37 @@
 
       </div>
     </div>
+
+
+    <!-- 地址修改弹出框和遮罩层 -->
+    <div class="modal" v-if="showAddressFix" @click="showAddressFix = false">
+      <div class="dialog" @click.stop>
+        <!-- 这里是弹出框的内容 -->
+        <div class="address_fix" style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
+          <h1 style="margin: 10px 0 10px 0">地址修改</h1>
+
+            <input type="text" v-model="fixed_address" style="margin: 20px 0 20px 0"/>
+
+          <div style="flex-direction: row">
+            <button @click="showAddressFix = false" style="width: 90px;margin-right: 10px">取消</button>
+            <button @click="updateLocation" style="width: 90px">确定</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!--地址修改弹出框底部-->
+
+
   </div>
   </div>
 </template>
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
-import { login,register } from "network/user.js";
+import { login,register } from "@/network/user.js";
+import {updateLocation} from "@/network/user";
+import {addToCart} from "@/network/cart";
 export default {
   components: {
     NavBar,
@@ -69,14 +93,26 @@ export default {
       userData: {
         id: 1,
         username: "杨婉平",
-        password: "",
+        password: "123456",
         location: "beijing",
-        createdAt: "",
-        updatedAt: ""
+        createdAt: "z",
+        updatedAt: "z"
       },
+      showAddressFix: false,
+      fixed_address: "",
     };
   },
+  created() { //缺少id获取用户数据的接口
+  },
   methods: {
+    updateLocation() {
+      let params = new URLSearchParams();
+      params.append('location', this.fixed_address);
+      updateLocation(params).then((res) => {
+        console.log(res)
+        this.showAddressFix = false;
+      });
+    },
     confirm() {
       // do something when confirm
       let requestData = {
@@ -185,5 +221,6 @@ button {
   margin-left: 25px;
   margin-right: 25px;
 }
+
 
 </style>
