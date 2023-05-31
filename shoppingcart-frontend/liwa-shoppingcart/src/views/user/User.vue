@@ -94,7 +94,7 @@ export default {
         id: 1,
         username: "杨婉平",
         password: "123456",
-        location: "beijing",
+        location: "bei",
         createdAt: "z",
         updatedAt: "z"
       },
@@ -110,6 +110,7 @@ export default {
       params.append('location', this.fixed_address);
       updateLocation(params).then((res) => {
         console.log(res)
+        this.userData = res
         this.showAddressFix = false;
       });
     },
